@@ -2,9 +2,9 @@ from redisEventManager import redisEventManager
 import os
 import threading
 
-from worker.sentences import worker
+from worker.language import worker
 redis_host= 'localhost'
-channel = 'sentences'
+channel = 'langdetect'
 
 def work(item):
     w=worker()
