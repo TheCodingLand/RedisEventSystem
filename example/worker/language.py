@@ -1,4 +1,4 @@
-import fasttext
+import fastText
 
 class worker():
 
@@ -7,7 +7,7 @@ class worker():
 
     def run(self,data):
         print (f"parsed sentence {data}")
-        ft = fasttext.load_model('./model/model.ftz')
+        ft = fastText.load_model('./model/model.ftz')
         result = ft.predict(data['text'],data['nbofresults'])  
         return result[0][1]
 
