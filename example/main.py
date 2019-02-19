@@ -1,26 +1,18 @@
 from redisEventManager import redisEventManager
 import os
 import threading
-channel = os.getenv("channel")
-channel = 'sentence'
+
 from worker.sentences import worker
-redis_host= 'tina-redis'
 redis_host= 'localhost'
+channel = 'sentences'
 
-class Listener(threading.Thread):
-    def __init__(self, channel):
-        threading.Thread.__init__(self)
-    
-    def work(self, item):
-        w=worker()
-        w.run(item)
+def work(item):
+    w=worker()
+    w.run(item)
 
-    def run(self):
-        events= redisEventManager(redis_host)
-        events.listen('sentences*', self.work)
-
-if __name__ == "__main__":
-    if channel:
-        client = Listener(channel)
-        client.start()
+def run():
+    events= redisEventManager(redis_host)
+    events.listen(f'{channel}*', work)
+if __name__=='__main__':
+    run()
 
