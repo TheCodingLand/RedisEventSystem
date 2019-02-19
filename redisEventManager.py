@@ -6,9 +6,7 @@ class redisEventManager(object):
     """This class implements the logic for redis event job reservation, and hadnling the connection for task results."""
 
     def __init__(self, redis_host):
-       
         self.data=None
-        
         self.redis = redis.Redis(host=redis_host, decode_responses=True, port=6379)
         self.pubsub = self.redis.pubsub()
         #Subscription will allow us to recieve commands on the registered channel

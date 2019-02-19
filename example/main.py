@@ -1,4 +1,4 @@
-from utils.redisEventManager import redisEventManager
+from redisEventManager import redisEventManager
 import os
 import threading
 channel = os.getenv("channel")
